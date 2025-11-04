@@ -1,0 +1,39 @@
+{
+  "name": "agario-game-server",
+  "version": "1.0.0",
+  "description": "Servidor autoritativo para juego Agario con Supabase Realtime",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test tests/**/*.test.js",
+    "headless": "node scripts/headless-simulation.js",
+    "test:realtime": "node scripts/test-realtime.js",
+    "test:health": "curl http://localhost:$PORT/health || curl http://localhost:3000/health",
+    "docker:build": "docker build -t agario-server .",
+    "docker:run": "docker run -p 3000:3000 --env-file .env agario-server"
+  },
+  "keywords": [
+    "agario",
+    "realtime",
+    "game-server",
+    "supabase",
+    "nodejs"
+  ],
+  "author": "MiniMax Agent",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.38.4",
+    "express": "^4.18.2",
+    "ajv": "^8.12.0",
+    "dotenv": "^16.3.1",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
