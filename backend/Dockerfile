@@ -83,5 +83,5 @@ LABEL org.opencontainers.image.title="Agario Game Server" \
       org.opencontainers.image.description="Servidor autoritativo para juego Agario con Supabase Realtime y game loop a 10Hz" \
       org.opencontainers.image.version="1.0.0" \
       org.opencontainers.image.authors="MiniMax Agent" \
-      org.opencontainers.image.source="https://github.com/kafe1994/agario-multiplayer-game" \
+      org.opencontainers.image.source="https://github.com/your-repo/agario-game" \
       org.opencontainers.image.licenses="MIT"
