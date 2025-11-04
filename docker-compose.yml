@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  # Servidor Backend Node.js
+  agario-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: agario-server
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+      - TICKS_PER_SECOND=10
+      - MAX_MSGS_PER_SECOND=20
+      - PING_INTERVAL_MS=30000
+      - PONG_TIMEOUT_MS=60000
+      - GHOST_TIMEOUT_MS=120000
+      - MAX_PAYLOAD_SIZE=8192
+      - LOG_LEVEL=info
+    volumes:
+      - ./backend/logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - agario-network
+
+  # Cliente Frontend React (para desarrollo)
+  agario-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: agario-client
+    ports:
+      - "5173:5173"
+    environment:
+      - NODE_ENV=development
+      - VITE_BACKEND_URL=http://localhost:3000
+      - VITE_SUPABASE_URL=${SUPABASE_URL}
+      - VITE_SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - agario-backend
+    networks:
+      - agario-network
+
+networks:
+  agario-network:
+    driver: bridge
+
+volumes:
+  agario_logs:
+    driver: local
