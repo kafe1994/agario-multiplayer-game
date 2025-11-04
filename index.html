@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agario Roles - FASE 1 Prototipo</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #1a1a2e;
+      overflow: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    #gameCanvas {
+      display: block;
+      background: #1a1a2e;
+      cursor: crosshair;
+    }
+    #gameContainer {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+    #debugToggle {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: 1px solid #666;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      z-index: 1000;
+    }
+    #instructions {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      max-width: 300px;
+      z-index: 1000;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="gameContainer">
+    <canvas id="gameCanvas"></canvas>
+    <button id="debugToggle">Debug (F3)</button>
+    <div id="instructions">
+      <strong>Controles Desktop:</strong><br>
+      WASD / Flechas: Movimiento<br>
+      Espacio: Split<br>
+      Q/E/R: Habilidades<br>
+      F3: Toggle Debug<br>
+      M: Toggle UI Móvil<br><br>
+      <strong>Controles Móvil:</strong><br>
+      Joystick izq.: Movimiento<br>
+      Botones der.: Split y habilidades<br><br>
+      <strong>Testing FASE 1:</strong><br>
+      Para masa m=100 → v_max ≈ 69.7<br>
+      Verificar en debug overlay
+    </div>
+  </div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>
